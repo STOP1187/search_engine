@@ -20,10 +20,10 @@ int main() {
     auto getRequest = converterJSON->GetRequests();
 
     invertedIndex->createDictionary();
-
+/**
     invertedIndex->PrintDictionary();
 
-
+*/
     auto server = new SearchServer(*invertedIndex);
 
     auto serchBase = server->search(converterJSON->GetRequests());

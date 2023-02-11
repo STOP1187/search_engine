@@ -8,7 +8,7 @@
     std::vector<std::string> ConverterJSON::GetTextDocuments()
     {
         std::vector<std::string> base;
-        std::ifstream fileConfig("E:\\homeWork_C++\\QT\\search_engine\\config.json");
+        std::ifstream fileConfig("config.json");
 
         if (!fileConfig)
         {
@@ -27,7 +27,7 @@
     int ConverterJSON::GetResponsesLimit()
     {
         int maxResponses;
-        std::ifstream fileConfig("E:\\homeWork_C++\\QT\\search_engine\\config.json");
+        std::ifstream fileConfig("config.json");
 
         if (!fileConfig)
         {
@@ -47,7 +47,7 @@
     std::vector<std::string> ConverterJSON::GetRequests()
     {
         std::vector<std::string> requests;
-        std::ifstream fileRequest("E:\\homeWork_C++\\QT\\search_engine\\requests.json");
+        std::ifstream fileRequest("requests.json");
         nlohmann::json dict;
         fileRequest >> dict;
         requests = dict["requests"];
@@ -60,7 +60,7 @@
 
 
     void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers) {
-        std::ofstream fileAnswer("E:\\homeWork_C++\\QT\\search_engine\\answers.json");
+        std::ofstream fileAnswer("answers.json");
         nlohmann::json dict;
         bool result;
         auto converterJSON = new ConverterJSON();
