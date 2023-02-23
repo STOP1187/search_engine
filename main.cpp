@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include "gtest/gtest.h"
 #include "ConverterJSON.h"
 #include "InvertedIndex.h"
@@ -7,11 +6,12 @@
 
 
 
+
 int main() {
 
-    auto converterJSON = new ConverterJSON();
-    auto invertedIndex = new InvertedIndex();
-
+    auto* converterJSON = new ConverterJSON();
+    auto* invertedIndex = new InvertedIndex();
+    auto* server = new SearchServer(*invertedIndex);
 
     auto getText = converterJSON->GetTextDocuments();
 
@@ -20,15 +20,15 @@ int main() {
     auto getRequest = converterJSON->GetRequests();
 
     invertedIndex->createDictionary();
-/**
-    invertedIndex->PrintDictionary();
 
-*/
-    auto server = new SearchServer(*invertedIndex);
-
-    auto serchBase = server->search(converterJSON->GetRequests());
+    auto serchBase = server->search(getRequest);
 
     converterJSON->putAnswers(serchBase);
 
+    delete converterJSON;
+    delete invertedIndex;
+    delete server;
+
+    std::cout << "search completed" <<std::endl;
     return 0;
 }

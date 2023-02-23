@@ -24,6 +24,7 @@ set(JSON_BuildTests OFF CACHE INTERNAL "")
 
 add_subdirectory(nlohmann_json)
 
+
 add_executable(search_engine
         main.cpp
         ConverterJSON.h
@@ -31,7 +32,8 @@ add_executable(search_engine
         InvertedIndex.h
         InvertedIndex.cpp
         SearchServer.h
-        SearchServer.cpp)
+        SearchServer.cpp
+        )
 
 add_custom_command(TARGET search_engine PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -39,5 +41,7 @@ add_custom_command(TARGET search_engine PRE_BUILD
 
 target_link_libraries(search_engine PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries(search_engine PRIVATE gtest_main)
+
+
 
 gtest_discover_tests(search_engine)

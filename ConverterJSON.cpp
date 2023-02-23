@@ -1,112 +1,120 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 #include "ConverterJSON.h"
 #include "nlohmann/json.hpp"
 
 
-    std::vector<std::string> ConverterJSON::GetTextDocuments()
+
+std::vector<std::string> ConverterJSON::GetTextDocuments()
+{
+    std::vector<std::string> base;
+    std::ifstream fileConfig("config.json");
+
+    if (!fileConfig)
     {
-        std::vector<std::string> base;
-        std::ifstream fileConfig("config.json");
-
-        if (!fileConfig)
-        {
-            std::cerr << "config file is missing" << std::endl;
-        }
-        else
-        {
-            nlohmann::json dict;
-            fileConfig >> dict;
-            base = dict["files"];
-        }
-
-        return base;
-    };
-
-    int ConverterJSON::GetResponsesLimit()
+        std::cerr << "config file is missing" << std::endl;
+    }
+    else
     {
-        int maxResponses;
-        std::ifstream fileConfig("config.json");
-
-        if (!fileConfig)
-        {
-            std::cerr << "config file is missing" << std::endl;
-        }
-        else
-        {
-            nlohmann::json dict;
-            fileConfig >> dict;
-            maxResponses = dict["config"]["max_responses"];
-        }
-        fileConfig.close();
-
-        return maxResponses;
-    };
-
-    std::vector<std::string> ConverterJSON::GetRequests()
-    {
-        std::vector<std::string> requests;
-        std::ifstream fileRequest("requests.json");
         nlohmann::json dict;
-        fileRequest >> dict;
-        requests = dict["requests"];
+        fileConfig >> dict;
+        base = dict["files"];
+    }
 
-        fileRequest.close();
+    fileConfig.close();
 
-        return requests;
-    };
+    return base;
+};
 
+int ConverterJSON::GetResponsesLimit()
+{
+    int maxResponses;
+    std::ifstream fileConfig("config.json");
 
-
-    void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers) {
-        std::ofstream fileAnswer("answers.json");
+    if (!fileConfig)
+    {
+        std::cerr << "config file is missing" << std::endl;
+    }
+    else
+    {
         nlohmann::json dict;
-        bool result;
-        auto converterJSON = new ConverterJSON();
-        auto recodrRequest = converterJSON->GetRequests();
+        fileConfig >> dict;
+        maxResponses = dict["config"]["max_responses"];
+    }
+    fileConfig.close();
 
-        for (int i = 0; i < answers.size(); ++i) {
+    return maxResponses;
+};
 
-            auto request = answers[i];
+std::vector<std::string> ConverterJSON::GetRequests()
+{
+    std::vector<std::string> requests;
+    std::ifstream fileRequest("requests.json");
+    nlohmann::json dict;
+    fileRequest >> dict;
+    requests = dict["requests"];
 
-
-            for (int j = 0; j < request.size(); ++j) {
-
-                if (answers[i][j].rank < 0)
-                {
-                    result = false;
-                    dict = {
-                            "answer", {
-                                    {"request", recodrRequest[i]},
-                                    {"result", result},
-                            }
-                    };
+    fileRequest.close();
+    return requests;
+};
 
 
-                    fileAnswer << dict << "," << std::endl;
-                }
-                else
-                {
-                    result = true;
-                    dict = {
-                            "answer", {
-                                    {"request", recodrRequest[i]},
-                                    {"result", result},
-                                    {"relevance", {
-                                            {"docid", answers[i][j].doc_id},
-                                            {"rank", answers[i][j].rank}
-                                    }}
-                            }
-                    };
 
-                    fileAnswer << dict << "," << std::endl;
-                }
+void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers)
+{
+    std::ofstream fileAnswer("answers.json");
+    nlohmann::json dict;
 
-            }
+    bool result = true;
 
-        }
 
-        fileAnswer.close();
-    };
+
+    for (int i = 0; i < answers.size(); ++i)
+    {
+       auto request = answers[i];
+       auto requestName = GetRequests()[i];
+
+       for (int j = 0; j < request.size(); ++j)
+       {
+
+          if (answers[i][j].rank < 0)
+          {
+              result = false;
+
+              dict = {
+                      {"answers", {
+                              {"request", requestName},
+                              {"result", result}
+                      }}
+              };
+
+              fileAnswer << dict << ',' << std::endl;
+          }
+          else
+          {
+              result = true;
+
+              dict = {
+                      {"answers", {
+                              {"request", requestName},
+                              {"result", result},
+                              {"relevance", {
+                                      {"docid", {answers[i][j].doc_id}},
+                                      {"rank", {answers[i][j].rank}}
+                              }}
+                      }}
+              };
+
+
+
+          }
+           fileAnswer << dict << ',' << std::endl;
+      }
+
+    }
+
+    fileAnswer.close();
+};
 

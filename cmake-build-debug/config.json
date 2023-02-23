@@ -5,10 +5,10 @@
     "max_responses": 5
   },
   "files":[
-           "E:\\homeWork_C++\\baseForSearch\\base.txt",
-           "E:\\homeWork_C++\\baseForSearch\\base1.txt",
-           "E:\\homeWork_C++\\baseForSearch\\base2.txt",
-           "E:\\homeWork_C++\\baseForSearch\\base3.txt",
-           "E:\\homeWork_C++\\baseForSearch\\base4.txt"
+           "base.txt",
+           "base1.txt",
+           "base2.txt",
+           "base3.txt",
+           "base4.txt"
            ]
 }

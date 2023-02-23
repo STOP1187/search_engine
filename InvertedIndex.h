@@ -2,6 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include "ConverterJSON.h"
+#include <thread>
+#include <mutex>
 
 struct Entry {
     size_t doc_id, count;
