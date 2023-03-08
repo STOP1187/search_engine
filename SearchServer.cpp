@@ -2,44 +2,74 @@
 #include "ConverterJSON.h"
 #include <vector>
 #include <string>
+#include <numeric>
+
 
 
 
 std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<std::string> &queries_input)
 {
-
-    RelativeIndex relative;
     std::vector<std::vector<RelativeIndex>> baseAnswers;
     int sumCount = 0;
     float countMax = 0;
-    std::vector<RelativeIndex> request;
+
+    std::map<std::string, std::vector<Entry>> serchResult;
+
+    for (int i = 0; i < queries_input.size(); ++i) {
+
+        auto req = _index.GetWordCount(queries_input[i]);
+        serchResult[queries_input[i]] = req;
+
+        if (req.empty())
+        {
+            continue;
+        }
+
+        auto result = std::max_element(serchResult[queries_input[i]].begin(), serchResult[queries_input[i]].end(),
+                                       [](Entry a, Entry b) {
+                                           return a.count < b.count;
+                                       });
+
+        if (countMax < result->count)
+        {
+            countMax = result->count;
+        }
+
+
+    }
 
     for (int i = 0; i < queries_input.size(); ++i)
     {
-        auto req = _index.GetWordCount(queries_input[i]);
+        RelativeIndex relative;
+        std::vector<RelativeIndex> request;
 
-        for (int j = 0; j < req.size(); ++j)
+
+        for (int j = 0; j < serchResult[queries_input[i]].size(); ++j)
         {
 
-            relative.doc_id = req[j].doc_id;
-            sumCount += req[j].count;
-
-
-            if (req[j].count >= countMax)
+            auto lambda = [&](float a, std::pair<std::string , std::vector<Entry>> b)
+            {if (!b.first.empty() && !b.second.empty() && b.second[j].doc_id == 0)
             {
-                countMax = req[j].count;
+                return a + b.second[j].count;
             }
+                return a;
+            };
 
-            relative.rank = countMax / sumCount;
+            auto sumCount = std::accumulate(serchResult.begin(), serchResult.end(), 0.0f, lambda);
 
-            if (request.empty())
-            {
-                relative.doc_id = 0;
-                relative.rank = -1;
-            }
+
+            relative.doc_id = serchResult[queries_input[i]][j].doc_id;
+            relative.rank = sumCount / countMax;
 
             request.push_back(relative);
 
+        }
+
+        if (serchResult[queries_input[i]].empty())
+        {
+            relative.doc_id = 0;
+            relative.rank = 0;
+            request.push_back(relative);
         }
 
         baseAnswers.push_back(request);

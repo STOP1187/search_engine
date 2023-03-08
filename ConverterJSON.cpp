@@ -69,7 +69,7 @@ void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers)
     std::ofstream fileAnswer("answers.json");
     nlohmann::json dict;
 
-    bool result = true;
+    bool result;
 
     for (int i = 0; i < answers.size(); ++i)
     {
@@ -79,39 +79,39 @@ void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers)
        for (int j = 0; j < request.size(); ++j)
        {
 
-          if (answers[i][j].rank < 0)
-          {
-              result = false;
+           if (answers[i][j].rank == 0)
+           {
+               result = false;
+               dict = {
+                       "answer", {
+                               {"request", requestName},
+                               {"result", result},
+                       }
+               };
 
-              dict = {
-                      "answers", {
-                              {"request", requestName},
-                              {"result", result}
-                      }
-              };
+           }
+           else
+           {
+               result = true;
+               dict = {
+                       "answer", {
+                               {"request", requestName},
+                               {"result", result},
+                               {"relevance", {
+                                       {"docid", answers[i][j].doc_id},
+                                       {"rank", answers[i][j].rank}
+                               }}
+                       }
+               };
 
-              fileAnswer << dict << ',' << std::endl;
-          }
-          else
-          {
-              result = true;
 
-              dict = {
-                      "answers", {
-                              {"request", requestName},
-                              {"result", result},
-                              {"relevance", {
-                                      {"docid", {answers[i][j].doc_id}},
-                                      {"rank", {answers[i][j].rank}}
-                              }}
-                      }
-              };
-              fileAnswer << dict << ',' << std::endl;
-          }
+           }
+           fileAnswer << dict << "," << std::endl;
+       }
 
-      }
 
     }
+
 
     fileAnswer.close();
 }

@@ -35,7 +35,6 @@ std::vector<Entry> InvertedIndex::GetWordCount(const std::string& word)
     entry.doc_id = 0;
     entry.count = 0;
     std::vector<Entry> plug;
-    plug.push_back(entry);
 
     if (freq_dictionary.contains(word))
     {
@@ -145,20 +144,7 @@ std::vector<std::string> InvertedIndex::refactorBloks (std::string InDocs)
     return result;
 }
 
-void InvertedIndex::PrintDictionary ()
-{
-    std::map<std::string, std::vector<Entry>>::iterator it = freq_dictionary.begin();
 
-    for (int i = 0; it != freq_dictionary.end(); it++, i++)
-    {
-        std::cout << it->first << std::endl;
-
-        for (int j = 0; j != it->second.size(); ++j)
-        {
-            std::cout << it->second[j].doc_id << " " << it->second[j].count << std::endl;
-        }
-    }
-}
 
 
 
