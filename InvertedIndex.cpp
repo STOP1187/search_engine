@@ -51,56 +51,57 @@ void InvertedIndex::createDictionary ()
 {
     std::vector<Entry> wordCount;
     std::string line;
+    std::mutex access;
+
 
     for (int i = 0; i < docs.size(); ++i)
     {
-        auto blok = refactorBloks(docs[i]);
 
-        for (int j = 0; j < blok.size(); ++j)
-        {
-            Entry entry;
-            entry.doc_id = i;
-            entry.count = 0;
+        std::thread myThread ( [&] {
 
-            line = blok[j];
+            auto blok = refactorBloks(docs[i]);
 
-            for (int k = 0; k < blok.size(); ++k)
-            {
+            for (int j = 0; j < blok.size(); ++j) {
+                Entry entry;
+                entry.doc_id = i;
+                entry.count = 0;
 
-                if (line == blok[k])
-                {
-                    entry.count += 1;
-                }
+                line = blok[j];
 
+                for (int k = 0; k < blok.size(); ++k) {
 
-            }
+                    if (line == blok[k]) {
+                        entry.count += 1;
+                    }
 
-            if (freq_dictionary.contains(line))
-            {
-                auto iter = std::find_if(freq_dictionary[line].begin(), freq_dictionary[line].end(), [&cm = entry]
-                        (const Entry& m) -> bool { return cm.doc_id == m.doc_id;});
-
-                if (iter != std::end(freq_dictionary[line]))
-                {
-                    iter->count = entry.count;
 
                 }
-                else
-                {
+
+                if (freq_dictionary.contains(line)) {
+                    auto iter = std::find_if(freq_dictionary[line].begin(), freq_dictionary[line].end(), [&cm = entry]
+                            (const Entry &m) -> bool { return cm.doc_id == m.doc_id; });
+
+                    if (iter != std::end(freq_dictionary[line])) {
+                        iter->count = entry.count;
+
+                    } else {
+                        access.lock();
+                        freq_dictionary[line].push_back(entry);
+                        access.unlock();
+                    }
+
+
+                } else {
+                    access.lock();
                     freq_dictionary[line].push_back(entry);
+                    access.unlock();
                 }
 
-
-            }
-            else
-            {
-                freq_dictionary[line].push_back(entry);
             }
 
-        }
-
-        wordCount.clear();
-
+            wordCount.clear();
+        });
+        myThread.join();
     }
 
 }

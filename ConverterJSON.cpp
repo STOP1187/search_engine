@@ -76,10 +76,23 @@ void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers)
        auto request = answers[i];
        auto requestName = GetRequests()[i];
 
+        if (answers[i].empty()) {
+            result = false;
+            dict = {
+                    "answer", {
+                            {"request", requestName},
+                            {"result", result},
+                    }
+            };
+
+            fileAnswer << dict << "," << std::endl;
+            continue;
+        }
+
        for (int j = 0; j < request.size(); ++j)
        {
 
-           if (answers[i][j].rank == 0)
+           if (answers[i].empty())
            {
                result = false;
                dict = {

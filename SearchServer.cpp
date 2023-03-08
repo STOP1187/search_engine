@@ -47,7 +47,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
         for (int j = 0; j < serchResult[queries_input[i]].size(); ++j)
         {
 
-            auto lambda = [&](float a, std::pair<std::string , std::vector<Entry>> b)
+            auto lambda = [&j](float a, std::pair<std::string , std::vector<Entry>> b)
             {if (!b.first.empty() && !b.second.empty() && b.second[j].doc_id == 0)
             {
                 return a + b.second[j].count;
@@ -65,12 +65,6 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 
         }
 
-        if (serchResult[queries_input[i]].empty())
-        {
-            relative.doc_id = 0;
-            relative.rank = 0;
-            request.push_back(relative);
-        }
 
         baseAnswers.push_back(request);
     }
