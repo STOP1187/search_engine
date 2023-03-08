@@ -4,10 +4,11 @@
 #include <string>
 
 
+
 std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<std::string> &queries_input)
 {
 
-    RelativeIndex relativeIndex;
+    RelativeIndex relative;
     std::vector<std::vector<RelativeIndex>> baseAnswers;
     int sumCount = 0;
     float countMax = 0;
@@ -20,7 +21,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
         for (int j = 0; j < req.size(); ++j)
         {
 
-            relativeIndex.doc_id = req[j].doc_id;
+            relative.doc_id = req[j].doc_id;
             sumCount += req[j].count;
 
 
@@ -29,20 +30,19 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
                 countMax = req[j].count;
             }
 
-            relativeIndex.rank = countMax / sumCount;
-            request.push_back(relativeIndex);
-        }
+            relative.rank = countMax / sumCount;
 
-        if (!request.empty())
-        {
-            relativeIndex.doc_id = 0;
-            relativeIndex.rank = -1;
-            request.push_back(relativeIndex);
+            if (request.empty())
+            {
+                relative.doc_id = 0;
+                relative.rank = -1;
+            }
+
+            request.push_back(relative);
 
         }
 
         baseAnswers.push_back(request);
-
     }
 
     return baseAnswers;

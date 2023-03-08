@@ -3,6 +3,9 @@
 #include <fstream>
 #include <map>
 #include <string>
+#include "thread"
+#include <mutex>
+
 
 
 void InvertedIndex::UpdateDocumentBase(std::vector<std::string> input_docs)
@@ -27,6 +30,7 @@ void InvertedIndex::UpdateDocumentBase(std::vector<std::string> input_docs)
 
 std::vector<Entry> InvertedIndex::GetWordCount(const std::string& word)
 {
+
     Entry entry;
     entry.doc_id = 0;
     entry.count = 0;
@@ -43,11 +47,11 @@ std::vector<Entry> InvertedIndex::GetWordCount(const std::string& word)
     }
 }
 
+
 void InvertedIndex::createDictionary ()
 {
     std::vector<Entry> wordCount;
     std::string line;
-
 
     for (int i = 0; i < docs.size(); ++i)
     {
@@ -155,9 +159,6 @@ void InvertedIndex::PrintDictionary ()
         }
     }
 }
-
-
-
 
 
 

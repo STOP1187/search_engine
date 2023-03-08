@@ -11,15 +11,14 @@ int main() {
 
     auto* converterJSON = new ConverterJSON();
     auto* invertedIndex = new InvertedIndex();
-    auto* server = new SearchServer(*invertedIndex);
 
     auto getText = converterJSON->GetTextDocuments();
-
     invertedIndex->UpdateDocumentBase(getText);
+    invertedIndex->createDictionary();
+
+    auto* server = new SearchServer(*invertedIndex);
 
     auto getRequest = converterJSON->GetRequests();
-
-    invertedIndex->createDictionary();
 
     auto serchBase = server->search(getRequest);
 

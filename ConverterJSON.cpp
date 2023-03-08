@@ -9,7 +9,8 @@
 
 std::vector<std::string> ConverterJSON::GetTextDocuments()
 {
-    std::vector<std::string> base;
+    std::vector<std::string> massive;
+    std::string file;
     std::ifstream fileConfig("config.json");
 
     if (!fileConfig)
@@ -18,15 +19,16 @@ std::vector<std::string> ConverterJSON::GetTextDocuments()
     }
     else
     {
-        nlohmann::json dict;
-        fileConfig >> dict;
-        base = dict["files"];
+        nlohmann::json inList;
+        fileConfig >> inList;
+        massive = inList["files"];
+
     }
 
     fileConfig.close();
 
-    return base;
-};
+    return massive;
+}
 
 int ConverterJSON::GetResponsesLimit()
 {
@@ -46,7 +48,7 @@ int ConverterJSON::GetResponsesLimit()
     fileConfig.close();
 
     return maxResponses;
-};
+}
 
 std::vector<std::string> ConverterJSON::GetRequests()
 {
@@ -58,7 +60,7 @@ std::vector<std::string> ConverterJSON::GetRequests()
 
     fileRequest.close();
     return requests;
-};
+}
 
 
 
@@ -68,8 +70,6 @@ void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers)
     nlohmann::json dict;
 
     bool result = true;
-
-
 
     for (int i = 0; i < answers.size(); ++i)
     {
@@ -84,10 +84,10 @@ void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers)
               result = false;
 
               dict = {
-                      {"answers", {
+                      "answers", {
                               {"request", requestName},
                               {"result", result}
-                      }}
+                      }
               };
 
               fileAnswer << dict << ',' << std::endl;
@@ -97,24 +97,23 @@ void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers)
               result = true;
 
               dict = {
-                      {"answers", {
+                      "answers", {
                               {"request", requestName},
                               {"result", result},
                               {"relevance", {
                                       {"docid", {answers[i][j].doc_id}},
                                       {"rank", {answers[i][j].rank}}
                               }}
-                      }}
+                      }
               };
-
-
-
+              fileAnswer << dict << ',' << std::endl;
           }
-           fileAnswer << dict << ',' << std::endl;
+
       }
 
     }
 
     fileAnswer.close();
-};
+}
+
 
