@@ -48,7 +48,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
         {
 
             auto lambda = [&j](float a, std::pair<std::string , std::vector<Entry>> b)
-            {if (!b.first.empty() && !b.second.empty() && b.second[j].doc_id == 0)
+            {if (!b.first.empty() && !b.second.empty())
             {
                 return a + b.second[j].count;
             }
