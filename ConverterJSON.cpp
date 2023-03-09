@@ -4,7 +4,7 @@
 #include <string>
 #include "ConverterJSON.h"
 #include "nlohmann/json.hpp"
-
+#include <exception>
 
 
 std::vector<std::string> ConverterJSON::GetTextDocuments()
