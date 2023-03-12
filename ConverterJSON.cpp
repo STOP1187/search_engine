@@ -5,6 +5,7 @@
 #include "ConverterJSON.h"
 #include "nlohmann/json.hpp"
 #include <exception>
+#include "exeptionClass.h"
 
 
 std::vector<std::string> ConverterJSON::GetTextDocuments()
@@ -15,14 +16,18 @@ std::vector<std::string> ConverterJSON::GetTextDocuments()
 
     if (!fileConfig)
     {
-        std::cerr << "config file is missing" << std::endl;
+        throw std::exception();
     }
-    else
+
+    try
     {
         nlohmann::json inList;
         fileConfig >> inList;
         massive = inList["files"];
-
+    }
+    catch (const std::exception& x)
+    {
+        std::cerr << "config file is missing " << x.what() << std::endl;
     }
 
     fileConfig.close();
@@ -37,13 +42,18 @@ int ConverterJSON::GetResponsesLimit()
 
     if (!fileConfig)
     {
-        std::cerr << "config file is missing" << std::endl;
+        throw std::exception();
     }
-    else
+
+    try
     {
         nlohmann::json dict;
         fileConfig >> dict;
         maxResponses = dict["config"]["max_responses"];
+    }
+    catch (const std::exception& x)
+    {
+        std::cerr << "config file is missing " << x.what() << std::endl;
     }
     fileConfig.close();
 

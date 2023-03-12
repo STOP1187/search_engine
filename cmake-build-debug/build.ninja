@@ -77,6 +77,13 @@ build CMakeFiles/search_engine.dir/SearchServer.cpp.obj: CXX_COMPILER__search_en
   OBJECT_DIR = CMakeFiles\search_engine.dir
   OBJECT_FILE_DIR = CMakeFiles\search_engine.dir
 
+build CMakeFiles/search_engine.dir/exeptionClass.cpp.obj: CXX_COMPILER__search_engine_Debug E$:/homeWork_C++/QT/search_engine/exeptionClass.cpp || cmake_object_order_depends_target_search_engine
+  DEP_FILE = CMakeFiles\search_engine.dir\exeptionClass.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++23
+  INCLUDES = -IE:/homeWork_C++/QT/search_engine/nlohmann_json/include -isystem E:/homeWork_C++/QT/search_engine/cmake-build-debug/_deps/googletest-src/googletest/include -isystem E:/homeWork_C++/QT/search_engine/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles\search_engine.dir
+  OBJECT_FILE_DIR = CMakeFiles\search_engine.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target search_engine
@@ -85,7 +92,7 @@ build CMakeFiles/search_engine.dir/SearchServer.cpp.obj: CXX_COMPILER__search_en
 #############################################
 # Link the executable search_engine.exe
 
-build search_engine.exe search_engine[1]_tests.cmake | ${cmake_ninja_workdir}search_engine[1]_tests.cmake: CXX_EXECUTABLE_LINKER__search_engine_Debug CMakeFiles/search_engine.dir/main.cpp.obj CMakeFiles/search_engine.dir/ConverterJSON.cpp.obj CMakeFiles/search_engine.dir/InvertedIndex.cpp.obj CMakeFiles/search_engine.dir/SearchServer.cpp.obj | lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
+build search_engine.exe search_engine[1]_tests.cmake | ${cmake_ninja_workdir}search_engine[1]_tests.cmake: CXX_EXECUTABLE_LINKER__search_engine_Debug CMakeFiles/search_engine.dir/main.cpp.obj CMakeFiles/search_engine.dir/ConverterJSON.cpp.obj CMakeFiles/search_engine.dir/InvertedIndex.cpp.obj CMakeFiles/search_engine.dir/SearchServer.cpp.obj CMakeFiles/search_engine.dir/exeptionClass.cpp.obj | lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g
   LINK_LIBRARIES = lib/libgtest_main.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\search_engine.dir

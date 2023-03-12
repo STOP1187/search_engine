@@ -33,7 +33,7 @@ add_executable(search_engine
         InvertedIndex.cpp
         SearchServer.h
         SearchServer.cpp
-        )
+        exeptionClass.h exeptionClass.cpp)
 
 add_custom_command(TARGET search_engine PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
