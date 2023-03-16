@@ -1,11 +1,5 @@
 #include "InvertedIndex.h"
-#include <iostream>
-#include <fstream>
-#include <map>
-#include <string>
-#include "thread"
-#include <mutex>
-#include "gtest/gtest.h"
+
 
 
 void InvertedIndex::UpdateDocumentBase(std::vector<std::string> input_docs)

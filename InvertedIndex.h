@@ -5,6 +5,11 @@
 #include "ConverterJSON.h"
 #include <thread>
 #include <mutex>
+#include "gtest/gtest.h"
+#include <fstream>
+#include <string>
+
+
 
 struct Entry {
     size_t doc_id, count;

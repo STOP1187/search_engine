@@ -1,5 +1,4 @@
 #include <iostream>
-#include "gtest/gtest.h"
 #include "ConverterJSON.h"
 #include "InvertedIndex.h"
 #include "SearchServer.h"

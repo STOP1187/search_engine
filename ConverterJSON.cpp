@@ -1,11 +1,6 @@
-#include <iostream>
-#include <vector>
-#include <fstream>
-#include <string>
 #include "ConverterJSON.h"
-#include "nlohmann/json.hpp"
-#include <exception>
-#include "exeptionClass.h"
+
+
 
 
 std::vector<std::string> ConverterJSON::GetTextDocuments()

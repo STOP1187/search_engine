@@ -2,6 +2,14 @@
 #include <iostream>
 #include <vector>
 #include "InvertedIndex.h"
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <string>
+#include <exception>
+#include "exeptionClass.h"
+#include "nlohmann/json.hpp"
+#include "gtest/gtest.h"
 
 struct RelativeIndex
 {
