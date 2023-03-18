@@ -24,16 +24,23 @@ set(JSON_BuildTests OFF CACHE INTERNAL "")
 
 add_subdirectory(nlohmann_json)
 
+include_directories(headers)
+include_directories(CPPfiles)
 
 add_executable(search_engine
-        main.cpp
-        ConverterJSON.h
-        ConverterJSON.cpp
-        InvertedIndex.h
-        InvertedIndex.cpp
-        SearchServer.h
-        SearchServer.cpp
-        exeptionClass.h exeptionClass.cpp)
+        CPPfiles/main.cpp
+        headers/ConverterJSON.h
+        CPPfiles/ConverterJSON.cpp
+        headers/InvertedIndex.h
+        CPPfiles/InvertedIndex.cpp
+        headers/SearchServer.h
+        CPPfiles/SearchServer.cpp
+        headers/exeptionClass.h
+        CPPfiles/exeptionClass.cpp
+        headers/RequestNotFoundExeption.h
+        CPPfiles/RequestNotFoundExeption.cpp
+        headers/AnswersNotFoundExeption.h
+        CPPfiles/AnswersNotFoundExeption.cpp)
 
 add_custom_command(TARGET search_engine PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
