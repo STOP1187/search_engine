@@ -8,13 +8,21 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 
     for (const auto & i : queries_input) {
 
-        auto req = _index.GetWordCount(i);
-        serchResult[i] = req;
+        auto words = this->_index.refactorBloks(i);
+        std::vector<Entry> req;
 
-        if (req.empty())
+        for (const auto & j : words)
         {
-            continue;
+            auto reqResult = _index.GetWordCount(j);
+
+            if (reqResult.empty())
+            {
+                continue;
+            }
+            req.insert(req.end(), reqResult.begin(), reqResult.end());
         }
+
+        serchResult[i] = req;
 
         auto result = std::max_element(serchResult[i].begin(), serchResult[i].end(),
                                        [](Entry a, Entry b) {

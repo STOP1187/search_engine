@@ -21,6 +21,7 @@ TEST(TestCaseSearchServer, TestSimple) {
             }
     };
     InvertedIndex idx;
+
     idx.UpdateDocumentBase(docs);
     SearchServer srv(idx);
     std::vector<vector<RelativeIndex>> result = srv.search(request);

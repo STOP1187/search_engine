@@ -11,7 +11,7 @@ int main() {
     try
     {
         auto getText = converterJSON->GetTextDocuments();
-        invertedIndex->UpdateDocumentBase(getText);
+        invertedIndex->UpdateDocumentBaseFromFile(getText);
         invertedIndex->createDictionary();
 
         auto* server = new SearchServer(*invertedIndex);

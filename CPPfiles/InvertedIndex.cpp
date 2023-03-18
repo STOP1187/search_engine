@@ -3,20 +3,8 @@
 
 void InvertedIndex::UpdateDocumentBase(const std::vector<std::string>& input_docs)
 {
-    for (const auto & input_doc : input_docs)
-    {
-        std::ifstream file(input_doc);
-        std::string line;
-        std::string text;
-
-        while (std::getline(file, line))
-        {
-            text += line + ' ';
-        }
-        docs.push_back(text);
-        text = ' ';
-        file.close();
-    }
+    docs = input_docs;
+    createDictionary();
 }
 
 std::vector<Entry> InvertedIndex::GetWordCount(const std::string& word)
@@ -42,6 +30,7 @@ void InvertedIndex::createDictionary ()
     std::string line;
     std::mutex access;
 
+    std::vector<std::thread> threads;
 
     for (int i = 0; i < docs.size(); ++i)
     {
@@ -61,8 +50,6 @@ void InvertedIndex::createDictionary ()
                     if (line == k) {
                         entry.count += 1;
                     }
-
-
                 }
 
                 if (freq_dictionary.contains(line)) {
@@ -89,8 +76,16 @@ void InvertedIndex::createDictionary ()
 
             wordCount.clear();
         });
-        myThread.join();
+
+        threads.push_back(std::move(myThread));
+
     }
+
+    std::for_each(threads.begin(), threads.end(), [](std::thread &th)
+    {
+        th.join();
+    });
+
 }
 
 std::vector<std::string> InvertedIndex::refactorBloks (std::string InDocs)
@@ -122,7 +117,27 @@ std::vector<std::string> InvertedIndex::refactorBloks (std::string InDocs)
             word += symbol;
         }
     }
-
+    if (!word.empty())
+    {
+        result.push_back(word);
+    }
     return result;
 }
 
+void InvertedIndex::UpdateDocumentBaseFromFile(const std::vector<std::string>& fileNames)
+{
+    for (const auto & input_doc : fileNames)
+    {
+        std::ifstream file(input_doc);
+        std::string line;
+        std::string text;
+
+        while (std::getline(file, line))
+        {
+            text += line + ' ';
+        }
+        docs.push_back(text);
+        text = ' ';
+        file.close();
+    }
+}
