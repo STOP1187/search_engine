@@ -1,11 +1,11 @@
 #include "InvertedIndex.h"
 
 
-void InvertedIndex::UpdateDocumentBase(std::vector<std::string> input_docs)
+void InvertedIndex::UpdateDocumentBase(const std::vector<std::string>& input_docs)
 {
-    for (int i = 0; i < input_docs.size(); ++i)
+    for (const auto & input_doc : input_docs)
     {
-        std::ifstream file(input_docs[i]);
+        std::ifstream file(input_doc);
         std::string line;
         std::string text;
 
@@ -21,7 +21,7 @@ void InvertedIndex::UpdateDocumentBase(std::vector<std::string> input_docs)
 
 std::vector<Entry> InvertedIndex::GetWordCount(const std::string& word)
 {
-    Entry entry;
+    Entry entry{};
     entry.doc_id = 0;
     entry.count = 0;
     std::vector<Entry> plug;
@@ -50,15 +50,15 @@ void InvertedIndex::createDictionary ()
             auto blok = refactorBloks(docs[i]);
 
             for (int j = 0; j < blok.size(); ++j) {
-                Entry entry;
+                Entry entry{};
                 entry.doc_id = i;
                 entry.count = 0;
 
                 line = blok[j];
 
-                for (int k = 0; k < blok.size(); ++k) {
+                for (const auto & k : blok) {
 
-                    if (line == blok[k]) {
+                    if (line == k) {
                         entry.count += 1;
                     }
 
@@ -97,29 +97,25 @@ std::vector<std::string> InvertedIndex::refactorBloks (std::string InDocs)
 {
     std::vector<std::string> result;
     std::string word;
-    char symbol;
 
     for (int j = 0; j < InDocs.size(); ++j)
     {
-        symbol = InDocs[j];
+        char symbol = InDocs[j];
 
-        if (symbol == ' ' && InDocs.size() != 0)
+        if (symbol == ' ' && !InDocs.empty())
         {
             result.push_back(word);
             word = "";
-            symbol = 0;
         }
-        else if (symbol == ',' && InDocs.size() != 0)
+        else if (symbol == ',' && !InDocs.empty())
         {
             result.push_back(word);
             word = "";
-            symbol = 0;
         }
-        else if (symbol == '.' && InDocs.size() != 0)
+        else if (symbol == '.' && !InDocs.empty())
         {
             result.push_back(word);
             word = "";
-            symbol = 0;
         }
         else
         {

@@ -3,22 +3,20 @@
 std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<std::string> &queries_input)
 {
     std::vector<std::vector<RelativeIndex>> baseAnswers;
-    int sumCount = 0;
     float countMax = 0;
-
     std::map<std::string, std::vector<Entry>> serchResult;
 
-    for (int i = 0; i < queries_input.size(); ++i) {
+    for (const auto & i : queries_input) {
 
-        auto req = _index.GetWordCount(queries_input[i]);
-        serchResult[queries_input[i]] = req;
+        auto req = _index.GetWordCount(i);
+        serchResult[i] = req;
 
         if (req.empty())
         {
             continue;
         }
 
-        auto result = std::max_element(serchResult[queries_input[i]].begin(), serchResult[queries_input[i]].end(),
+        auto result = std::max_element(serchResult[i].begin(), serchResult[i].end(),
                                        [](Entry a, Entry b) {
                                            return a.count < b.count;
                                        });
@@ -29,12 +27,12 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
         }
     }
 
-    for (int i = 0; i < queries_input.size(); ++i)
+    for (const auto & i : queries_input)
     {
-        RelativeIndex relative;
+        RelativeIndex relative{};
         std::vector<RelativeIndex> request;
 
-        for (int j = 0; j < serchResult[queries_input[i]].size(); ++j)
+        for (int j = 0; j < serchResult[i].size(); ++j)
         {
             auto lambda = [&j](float a, std::pair<std::string , std::vector<Entry>> b)
             {if (!b.first.empty() && !b.second.empty())
@@ -46,15 +44,14 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 
             auto sumCount = std::accumulate(serchResult.begin(), serchResult.end(), 0.0f, lambda);
 
-            relative.doc_id = serchResult[queries_input[i]][j].doc_id;
+            relative.doc_id = serchResult[i][j].doc_id;
             relative.rank = sumCount / countMax;
-
             request.push_back(relative);
         }
         baseAnswers.push_back(request);
     }
     return baseAnswers;
-};
+}
 
 using namespace std;
 
