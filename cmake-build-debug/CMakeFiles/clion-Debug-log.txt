@@ -16,5 +16,17 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Could NOT find Python (missing: Python_EXECUTABLE Interpreter) 
 -- Using the multi-header code from E:/homeWork_C++/QT/search_engine/nlohmann_json/include/
 -- Configuring done
--- Generating done
--- Build files have been written to: E:/homeWork_C++/QT/search_engine/cmake-build-debug
+CMake Error at Tests/CMakeLists.txt:17 (add_executable):
+  Cannot find source file:
+
+    E:/homeWork_C++/QT/search_engine/CPPfiles/SearchEngine.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+
+
+CMake Error at Tests/CMakeLists.txt:17 (add_executable):
+  No SOURCES given to target: GtestTests
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

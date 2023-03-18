@@ -3,7 +3,6 @@
 #include <vector>
 #include "ConverterJSON.h"
 #include "InvertedIndex.h"
-#include "gtest/gtest.h"
 #include <string>
 #include <numeric>
 

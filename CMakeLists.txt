@@ -14,6 +14,7 @@ FetchContent_Declare(
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 set(gtest_disable_pthreads on)
+set(MY_SRC_DIR ${CMAKE_SOURCE_DIR}/CPPfiles)
 
 FetchContent_MakeAvailable(googletest)
 
@@ -26,6 +27,7 @@ add_subdirectory(nlohmann_json)
 
 include_directories(headers)
 include_directories(CPPfiles)
+add_subdirectory(Tests)
 
 add_executable(search_engine
         CPPfiles/main.cpp

@@ -7,3 +7,4 @@
 include("E:/homeWork_C++/QT/search_engine/cmake-build-debug/search_engine[1]_include.cmake")
 subdirs("_deps/googletest-build")
 subdirs("nlohmann_json")
+subdirs("Tests")

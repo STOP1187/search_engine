@@ -38,3 +38,11 @@ E:/homeWork_C++/QT/search_engine/cmake-build-debug/nlohmann_json/CMakeFiles/list
 E:/homeWork_C++/QT/search_engine/cmake-build-debug/nlohmann_json/CMakeFiles/install.dir
 E:/homeWork_C++/QT/search_engine/cmake-build-debug/nlohmann_json/CMakeFiles/install/local.dir
 E:/homeWork_C++/QT/search_engine/cmake-build-debug/nlohmann_json/CMakeFiles/install/strip.dir
+E:/homeWork_C++/QT/search_engine/cmake-build-debug/Tests/CMakeFiles/GtestTests.dir
+E:/homeWork_C++/QT/search_engine/cmake-build-debug/Tests/CMakeFiles/test.dir
+E:/homeWork_C++/QT/search_engine/cmake-build-debug/Tests/CMakeFiles/edit_cache.dir
+E:/homeWork_C++/QT/search_engine/cmake-build-debug/Tests/CMakeFiles/rebuild_cache.dir
+E:/homeWork_C++/QT/search_engine/cmake-build-debug/Tests/CMakeFiles/list_install_components.dir
+E:/homeWork_C++/QT/search_engine/cmake-build-debug/Tests/CMakeFiles/install.dir
+E:/homeWork_C++/QT/search_engine/cmake-build-debug/Tests/CMakeFiles/install/local.dir
+E:/homeWork_C++/QT/search_engine/cmake-build-debug/Tests/CMakeFiles/install/strip.dir
