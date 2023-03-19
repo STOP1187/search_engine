@@ -1,0 +1,1071 @@
+.gitignore
+##### Windows
+# Файлы кэша миниатюр Windows
+Thumbs.db
+Thumbs.db: шифруемый
+ehthumbs.db
+ehthumbs_vista.db
+
+# Файл дампа
+*.stackdump
+
+# Файл конфигурации папки
+[Dd] esktop.ini
+
+# Корзина, используемая в общих файловых ресурсах
+$RECYCLE.BIN/
+
+# Файлы установщика Windows
+*.cab
+*.msi
+* .msix
+* .msm
+* .msp
+
+# Ярлыки Windows
+*.lnk
+
+##### Linux
+*~
+
+# временные файлы, которые могут быть созданы, если у процесса все еще открыт дескриптор удаленного файла
+.fuse_hidden*
+
+# Настройки каталога KDE
+.каталог
+
+# Папка корзины Linux, которая может появиться на любом разделе или диске
+.Мусор- *
+
+файлы # .nfs создаются, когда открытый файл удаляется, но к нему все еще осуществляется доступ
+.nfs*
+
+##### macOS
+# Общие
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Эскизы
+._*
+
+# Файлы, которые могут отображаться в корне тома
+.DocumentRevisions-Версия 100
+.fseventsd
+.Spotlight-V100
+.Временные элементы
+.Мусорные корзины
+.VolumeIcon.icns
+.com.apple.timemachine.не представляйте
+
+# Каталоги, потенциально созданные на удаленном общем ресурсе AFP
+.AppleDB
+.AppleDesktop
+Сетевая  корзина
+Временные  элементы
+.apdisk
+
+##### Android
+# Встроенные файлы приложений
+* .apk
+*.ap_
+*.aab
+
+# Файлы для виртуальной машины ART / Dalvik
+*.dex
+
+# Файлы классов Java
+*.class
+
+# Сгенерированные файлы
+bin/
+gen/
+выход/
+# Раскомментируйте следующую строку на случай, если вам нужно, и у вас нет файлов типа release build в вашем приложении
+# релиз/
+
+# Файлы Gradle
+.gradle/
+сборка/
+
+# Локальный файл конфигурации (путь к sdk и т. Д.)
+local.properties
+
+# Папка Proguard, созданная Eclipse
+proguard/
+
+# Файлы журналов
+*.log
+
+# Временные файлы редактора навигации Android Studio
+.навигация/
+
+# Android Studio захватывает папку
+захватывает/
+
+# IntelliJ
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.идея/словари
+.идея/ библиотеки
+# Android Studio 3 в файле .gitignore.
+.idea/кэши
+.idea/modules.xml
+# Прокомментируйте следующую строку, если для вас важно сохранить положение элементов в редакторе навигации
+.idea/navEditor.xml
+
+# Файлы хранилища ключей
+# Раскомментируйте следующие строки, если вы не хотите проверять файлы хранилища ключей.
+#* .jks
+# *.хранилище ключей
+
+# Внешняя собственная папка сборки, созданная в Android Studio 2.2 и более поздних версиях
+.externalNativeBuild
+
+# Сервисы Google (например, API или Firebase)
+# google-services.json
+
+# Бесплатная линия
+freeline.py
+бесплатная линия/
+freeline_project_description.json
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/скриншоты
+fastlane/test_output
+fastlane/readme.md
+
+# Контроль версий
+vcs.xml
+
+# lint
+lint / промежуточные звенья/
+lint / сгенерированный/
+lint/outputs/
+lint/tmp/
+# lint/отчеты/
+
+##### Резервное копирование
+*.bak
+*.gho
+*.ori
+*.origin
+*.tmp
+
+##### GPG
+защита.*
+
+##### Dropbox
+# Настройки и кэши Dropbox
+.dropbox
+.dropbox.attr
+.dropbox.cache
+
+##### SynopsysVCS
+# Форматы сигналов
+* .vcd
+*.vpd
+*.evcd
+*.fsdb
+
+# Имя по умолчанию исполняемого файла моделирования. Другое имя может быть
+# указывается с помощью этого переключателя (соответствующее имя базы данных daidir
+# также взято отсюда): -o <путь>/<имя файла>
+simv
+
+# Сгенерирован для топовых конфигураций Verilog и VHDL
+simv.daidir/
+simv.db.dir/
+
+# Инфраструктура, необходимая для совместного моделирования моделей SystemC с
+# Модели Verilog / VHDL. Альтернативный каталог может быть указан с помощью этого
+# переключатель: -Mdir=<directory_path>
+csrc/
+
+# Файл журнала - следующий переключатель позволяет указать файл, который будет
+# используется для записи всех сообщений из моделирования: -l <имя файла>
+*.log
+
+# Результаты покрытия (сгенерированные с помощью urg) и расположение базы данных. The
+# также можно использовать следующий переключатель: urg -dir <coverage_directory>.vdb
+simv.vdb/
+urgReport/
+
+Файлы, связанные с # DVE и UCLI.
+DVEfiles/
+ucli.key
+
+# Когда дизайн разрабатывается для DirectC, создается следующий файл
+# с объявлениями для функций C / C ++.
+vc_hdrs.h
+
+##### SVN
+.svn/
+
+##### Mercurial
+.hg/
+.hgignore
+.hgsigs
+.hgsub
+.hgsubstate
+.hgtags
+
+##### Базар
+.bzr/
+.bzrignore
+
+##### РЕЗЮМЕ
+/CVS/*
+**/CVS/*
+.cvsignore
+*/.cvsignore
+
+##### TortoiseGit
+# Настройки на уровне проекта
+/.tgitconfig
+
+##### Шпатлевка
+# Закрытый ключ
+* .ppk
+
+##### Vim
+# Обмен
+[._]*.s[a-v][a-z]
+!* .svg  # закомментируйте, если вам не нужны векторные файлы
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Сессия
+Session.vim
+Sessionx.vim
+
+# Временный
+.netrwhist
+*~
+# Автоматически генерируемые файлы тегов
+Теги
+# Постоянная отмена
+[._]*.un~
+
+##### Emacs
+# -*- режим: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+* .elc
+автоматическое сохранение списка
+бродяга
+.\#*
+
+# Org-режим
+.org-id-locations
+*_archive
+
+# flymake-режим
+* _flymake.*
+
+# eshell файлы
+/eshell/история
+/eshell/lastdir
+
+# пакеты elpa
+/elpa/
+
+# файлы reftex
+*.rel
+
+# Автоматическая папка AUCTeX
+/авто/
+
+# пакеты cask
+.cask/
+dist/
+
+# Flycheck
+flycheck_* .el
+
+# каталог авторизации сервера
+/сервер/
+
+# файлы снарядов
+.снаряд
+
+# конфигурация каталога
+.dir-locals.el
+
+# сетевая безопасность
+/ network-security.data
+
+##### SublimeText
+# Кэшировать файлы для Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# Файлы рабочей области зависят от пользователя
+*.sublime-рабочее пространство
+
+# Файлы проекта должны быть возвращены в репозиторий, если только значительная
+# доля участников, вероятно, не будет использовать Sublime Text
+# *.sublime-проект
+
+# Файл конфигурации SFTP
+sftp-config.json
+sftp-config-alt*.json
+
+# Файлы, специфичные для управления пакетами
+Управление пакетами .последний запуск
+Управление пакетами .ca-список
+Управление пакетами .ca-bundle
+Управление пакетами .system-ca-bundle
+Пакет Control.cache /
+Пакет Control.ca-certs /
+Управление пакетами .объединенный-ca-пакет
+Управление пакетами .user-ca-bundle
+oscrypto-ca-bundle.crt
+bh_unicode_properties.cache
+
+# Sublime-пакет github хранит токен github в этом файле
+# https://packagecontrol.io/packages/sublime-github
+GitHub.sublime-настройки
+
+##### Блокнот++
+# Резервные копии Notepad ++ #
+*.bak
+
+##### TextMate
+* .tmproj
+*.tmproject
+tmtags
+
+##### VisualStudioCode
+.vscode/*
+.vscode!/settings.json
+.vscode!/tasks.json
+.vscode!/launch.json
+.vscode!/extensions.json
+*.code-рабочее пространство
+
+# Локальная история для кода Visual Studio
+.история/
+
+##### NetBeans
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+сборка/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+##### JetBrains
+# Охватывает IDE JetBrains: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm и Rider
+# Ссылка: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# Пользовательский материал
+.идея/**/workspace.xml
+.идея/**/tasks.xml
+.идея/**/usage.statistics.xml
+.идея/**/словари
+.идея/**/ полка
+
+# Сгенерированные файлы
+.идея/**/contentModel.xml
+
+# Конфиденциальные или файлы с высоким оттоком
+.idea/**/Источники данных/
+.idea/**/DataSources.ids
+.идея/**/dataSources.local.xml
+.идея/**/sqlDataSources.xml
+.идея/**/dynamic.xml
+.идея/**/uiDesigner.xml
+.идея/**/dbnavigator.xml
+
+# Gradle
+.идея/**/gradle.xml
+.idea/**/библиотеки
+
+# Gradle и Maven с автоматическим импортом
+# При использовании Gradle или Maven с автоматическим импортом следует исключить файлы модулей,
+# поскольку они будут воссозданы и могут вызвать отток. Раскомментируйте, если используете
+# автоимпорт.
+# .идея/артефакты
+# .idea/compiler.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/модули
+# *.iml
+# *.ipr
+
+# CMake
+*cmake-сборка-/
+
+# Плагин Mongo Explorer
+.идея/**/mongoSettings.xml
+
+# Формат проекта на основе файлов
+*.iws
+
+# IntelliJ
+выход/
+
+# mpeltonen/sbt-плагин idea
+.idea_модули/
+
+# Плагин JIRA
+atlassian-ide-plugin.xml
+
+# Плагин Cursive Clojure
+.idea/replstate.xml
+
+Плагин # Crashlytics (для Android Studio и IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Клиент Rest на основе редактора
+.idea/HttpRequests
+
+# Android studio 3.1+ сериализованный файл кэша
+.idea/caches/build_file_checksums.ser
+
+##### Eclipse
+.метаданные
+bin/
+tmp/
+*.tmp
+*.bak
+* .swp
+*~.nib
+local.properties
+.настройки/
+.путь загрузки
+.рекомендатели
+
+# Внешние разработчики инструментов
+.externalToolBuilders/
+
+# Локально сохраненные "Конфигурации запуска Eclipse"
+*.запуск
+
+# Специфичный для PyDev (среда разработки Python для Eclipse)
+*.pydevproject
+
+# Специфичный для CDT (инструментарий разработки на C / C ++)
+.cproject
+
+# CDT- автоинструменты
+.автоинструменты
+
+# Java-обработчик аннотаций (APT)
+.factorypath
+
+# Специфичный для PDT (инструменты разработки PHP)
+.buildpath
+
+# плагин sbteclipse
+.target
+
+Плагин # Tern
+.tern-проект
+
+# Плагин TeXlipse
+.texlipse
+
+# STS (набор инструментов Spring)
+.springBeans
+
+# Рекомендации по кодированию
+.рекомендатели/
+
+# Обработка аннотаций
+.apt_generated/
+.apt_generated_test/
+
+# Специфичный для Scala IDE (разработка на Scala и Java для Eclipse)
+.cache-основной
+.scala_dependencies
+.рабочий лист
+
+# Раскомментируйте эту строку, если вы хотите игнорировать файл описания проекта.
+# Обычно этот файл отслеживается, если он содержит конфигурации сборки / зависимостей:
+#.project
+
+##### Qt
+# Объекты и библиотеки C ++
+* .slo
+*.lo
+*.o
+*.a
+*.la
+*.lai
+*.so
+* .итак.*
+* .dll
+*.dylib
+
+# Qt-es
+object_script.*.Release
+object_script.*.Debug
+*_plugin_import.cpp
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+* .pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qmlc
+*.jsc
+Makefile*
+* сборка- *
+*.qm
+*.prl
+
+# Модульные тесты Qt
+target_wrapper.*
+
+# QtCreator
+*.автосохранение
+
+# QtCreator Qml
+*.qmlproject.user
+*.qmlproject.user.*
+
+# QtCreator CMake
+CMakeLists.txt.user*
+
+# QtCreator 4.8< база данных компиляции
+compile_commands.json
+
+# QtCreator файлы, специфичные для локальной машины, для импортированных проектов
+* создатель.пользователь *
+
+##### VisualStudio
+##### VisualStudio
+## Игнорировать временные файлы Visual Studio, результаты сборки и
+## файлы, созданные популярными дополнениями Visual Studio.
+##
+## Получить последнюю версию от https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
+
+# Пользовательские файлы
+* .rsuser
+*.suo
+*.user
+*.userosscache
+* .sln.docstates
+
+# Пользовательские файлы (MonoDevelop / Xamarin Studio)
+*.пользовательские настройки
+
+# Автоматически генерируемые файлы Mono
+mono_crash.*
+
+# Результаты сборки
+[Dd] ebug/
+[Dd] ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr] [Mm]64/
+bld/
+[Bb] в/
+[Oo]bj/
+[Ll] og/
+[Ll] ogs/
+
+# Visual Studio 2015/2017 каталог кэша / параметров
+.vs/
+# Раскомментируйте, если у вас есть задачи, которые создают статические файлы проекта в wwwroot
+#wwwroot/
+
+# Автоматически генерируемые файлы Visual Studio 2017
+Файлы\ Сгенерированные/
+
+# MSTest Результаты тестирования
+[Tt] есть [Rr] результат */
+[Bb] uild[Ll] og.*
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Результаты сборки проекта ATL
+[Dd] ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# Результаты тестов
+Бенчмаркдотнет.Артефакты/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+артефакты/
+
+# ASP.NET Строительные леса
+ScaffoldingReadMe.txt
+
+# StyleCop
+StyleCopReport.xml
+
+# Файлы, созданные Visual Studio
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+* .iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+* .rsp
+* .sbr
+*.tlb
+*.tli
+* .tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.vspscc
+*.vssscc
+.сборки
+*.pidb
+*.svclog
+* .scc
+
+# Тестовые файлы Chutzpah
+_Chutzpah*
+
+# Файлы кэша Visual C ++
+ipch/
+* .точки доступа
+* .ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+* .VC.db
+* .VC.VC.opendb
+
+# Профилировщик Visual Studio
+* .psess
+* .vsp
+* .vspx
+* .sap
+
+# Файлы трассировки Visual Studio
+*.e2e
+
+# Локальное рабочее пространство TFS 2012
+$ tf/
+
+# Инструментарий автоматизации руководства
+*.gpState
+
+# ReSharper - это надстройка для программирования на .NET
+*_ReSharper/
+.*[Rr] e[Ss]харпер
+*.DotSettings.user
+
+# TeamCity - это надстройка для сборки
+_TeamCity*
+
+# dotCover - это инструмент для покрытия кода
+* .dotCover
+
+# AxoCover - это инструмент для покрытия кода
+.axoCover/*
+.axoCover!/settings.json
+
+# Coverlet - это бесплатный кроссплатформенный инструмент для покрытия кода.
+*покрытие [.json, .xml, .info]
+
+# Результаты покрытия кода Visual Studio
+*.покрытие
+*.coveragexml
+
+# NCrunch
+_NCrunch_*
+.* crunch *.local.xml
+nCrunchTemp_*
+
+# MightyMoose
+* .mm.*
+AutoTest.Net/
+
+# Веб-верстак (sass)
+.sass-кэш/
+
+# Папка вывода Installshield
+[Ee]xpress/
+
+# DocProject - это надстройка генератора документации
+DocProject/buildhelp/
+DocProject/Help/*.HxT
+DocProject/Help/*.HxC
+DocProject/Help/*.hhc
+DocProject/Help/*.hhk
+DocProject/Help/*.hhp
+DocProject/Help/Html2
+DocProject/Справка/html
+
+# Каталог с одним щелчком мыши
+опубликовать/
+
+# Опубликовать веб-вывод
+.*[Pp]ublish.xml
+*.azurePubxml
+# Примечание: прокомментируйте следующую строку, если вы хотите проверить настройки веб-развертывания,
+# но строки подключения к базе данных (с потенциальными паролями) будут незашифрованными
+*.pubxml
+*.publishproj
+
+# Веб-приложение Microsoft Azure публикует настройки. Прокомментируйте следующую строку, если хотите
+# проверка настроек публикации веб-приложения Azure, но конфиденциальная информация, содержащаяся
+# в этих сценариях будут незашифрованы
+Публиковать скрипты/
+
+# Пакеты NuGet
+*.nupkg
+# Пакеты символов NuGet
+* .snupkg
+# Папка packages может быть проигнорирована из-за восстановления пакета
+**/[Pp]ссылки/*
+# кроме build/ , который используется в качестве целевого объекта MSBuild.
+**!/[Pp]ackages/build/
+# Раскомментируйте, если необходимо, однако, как правило, он будет восстановлен при необходимости
+#!**/[Pp]учетные записи/репозитории.config
+Файлы project.json # NuGet v3 создают больше игнорируемых файлов
+* .nuget.props
+*.nuget.targets
+
+# Вывод сборки Microsoft Azure
+csx/
+*.build.csdef
+
+# Эмулятор Microsoft Azure
+ecf/
+rcf/
+
+# Каталоги и файлы пакетов приложений Windows Store
+Пакеты приложений/
+BundleArtifacts/
+Пакет.StoreAssociation.xml
+_pkginfo.txt
+*.appx
+*.appxbundle
+*.appxupload
+
+# Файлы кэша Visual Studio
+# файлы, оканчивающиеся на .cache, можно игнорировать
+.*[Cc]ache
+# но следите за каталогами, заканчивающимися на .cache
+.?*![Cc]боль/
+
+# Другие
+ClientBin/
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+* .jfm
+* .pfx
+*.publishsettings
+orleans.codegen.cs
+
+# Включение файлов со строгими именами может представлять угрозу безопасности
+# (https://github.com/github/gitignore/pull/2483#issue-259490424 )
+#*.snk
+
+# Поскольку существует несколько рабочих процессов, раскомментируйте следующую строку, чтобы игнорировать bower_components
+# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622 )
+#bower_компоненты/
+
+# RIA/Silverlight проекты
+Сгенерированный код/
+
+# Резервное копирование и создание отчетов о файлах в результате преобразования старого файла проекта
+# к более новой версии Visual Studio. Резервные копии файлов не нужны,
+# потому что у нас есть git ;-)
+_ улучшение_порт_файлов/
+* Резервное копирование/
+Список обновлений* .XML
+Список обновлений*.htm
+ServiceFabricBackup/
+* .rptproj.bak
+
+# Файлы SQL Server
+* .mdf
+*.ldf
+* .ndf
+
+# Проекты бизнес-аналитики
+* .rdl.data
+*.bim.layout
+*.bim_*.settings
+* .rptproj.rsuser
+-* [Bb]ackup.rdl
+-* [Bb] ackup ([0-9]).rdl
+-* [Bb]ackup ([0-9][0-9]).rdl
+
+# Подделки Microsoft
+Поддельные сборки/
+
+# Файл настроек плагина GhostDoc
+*.GhostDoc.xml
+
+# Node.js Инструменты для Visual Studio
+.ntvs_analysis.dat
+node_modules/
+
+# Журнал сборки Visual Studio 6
+*.plg
+
+# Файл параметров рабочей области Visual Studio 6
+*.opt
+
+# Автоматически сгенерированный файл рабочей области Visual Studio 6 (содержит, какие файлы были открыты и т.д.)
+*.vbw
+
+# Visual Studio LightSwitch вывод сборки
+**/*.HTMLClient/Созданные статьи
+**/*.DesktopClient/Созданные статьи
+**/*.DesktopClient/ModelManifest.xml
+**/*.Server/Созданные статьи
+**/*.Server/ModelManifest.xml
+_Pvt_Extensions
+
+# Пакетный менеджер зависимостей
+.paket/paket.exe
+пакет-файлы/
+
+# ПОДДЕЛКА - F# Сделать
+.подделка/
+
+# Личные настройки CodeRush
+.cr/личный
+
+# Инструменты Python для Visual Studio (PTVS)
+__pycache__/
+*.pyc
+
+# Cake - раскомментируйте, если вы его используете
+# инструменты/**
+# !tools/packages.config
+
+# Tabs Studio
+* .tss
+
+# Конфигурационный файл JustMock от Telerik
+* .jmconfig
+
+# Вывод сборки BizTalk
+*.btp.cs
+*.btm.cs
+* .odx.cs
+*.xsd.cs
+
+# Результаты анализа пользовательского интерфейса OpenCover
+Открытая обложка/
+
+# Вывод локального запуска Azure Stream Analytics
+ASALocalRun/
+
+# Двоичный и структурированный журнал MSBuild
+* .binlog
+
+# Файл конфигурации отладчика графического процессора NVidia Nsight
+* .nvuser
+
+Рабочая папка # MFractors (инструмент повышения производительности Xamarin)
+.mfractor/
+
+# Локальная история для Visual Studio
+.localhistory/
+
+# Проверка работоспособности временной базы данных BeatPulse
+healthchecksdb
+
+# Папка резервного копирования для инструмента преобразования ссылок на пакеты в Visual Studio 2017
+Миграционная резервная копия/
+
+# Рабочая папка Ionide (кроссплатформенный F # VS Code tools)
+.ionide/
+
+# Fody - автоматически генерируемая XML-схема
+FodyWeavers.xsd
+
+##### Gradle
+.gradle
+**/build/
+src!/**/build/
+
+# Игнорировать конфигурацию графического интерфейса Gradle
+gradle-app.setting
+
+# Избегайте игнорирования файла jar-оболочки Gradle (файлы .jar обычно игнорируются)
+!gradle-wrapper.jar
+
+# Кэш проекта
+.gradletasknamecache
+
+# # Обходной путь https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/оболочка/gradle-wrapper.properties
+
+##### CMake
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Тестирование
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+##### C++
+# Предварительные требования
+*.d
+
+# Скомпилированные объектные файлы
+* .slo
+*.lo
+*.o
+*.obj
+
+# Предварительно скомпилированные заголовки
+*.gch
+*.pch
+
+# Скомпилированные динамические библиотеки
+*.so
+*.dylib
+* .dll
+
+# Файлы модулей Fortran
+*.mod
+* .smod
+
+# Скомпилированные статические библиотеки
+*.lai
+*.la
+*.a
+*.lib
+
+# Исполняемые файлы
+* .exe
+*.out
+*.app
+
+# Двоичный файл расширения C / C ++
+*.bin
+
+##### C
+# Предварительные требования
+*.d
+
+# Объектные файлы
+*.o
+*.ko
+*.obj
+* .elf
+
+# Вывод компоновщика
+*.ilk
+*.map
+*.exp
+
+# Предварительно скомпилированные заголовки
+*.gch
+*.pch
+
+# Библиотеки
+*.lib
+*.a
+*.la
+*.lo
+
+# Общие объекты (вкл. Библиотеки DLL для Windows)
+* .dll
+*.so
+* .итак.*
+*.dylib
+
+# Исполняемые файлы
+* .exe
+*.out
+*.app
+*.i*86
+*.x86_64
+* .hex
+
+# Файлы отладки
+.dSYM*/
+*.su
+*.idb
+*.pdb
+
+# Результаты компиляции модуля ядра
+* .mod*
+* .cmd
+.tmp_versions/
+модули.порядок
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Объектный файл Raspberry Pi Pico
+* .uf2
+# Файл дизассемблера Raspberry Pi Pico
+*.dis
+
+# Объектный файл Raspberry Pi Pico
+ * .uf2
+# Файл дизассемблера Raspberry Pi Pico
+ * .dis
+# Файл двоичного расширения C / C ++
+ * .bin
+
+ .DS_Store
+ CMakeCache.txt
+ *.json
+ *.txt
+ !CmakeLists.txt
+ *.cmake
+ Makefile
+
+ bin/
+ .idea
+ _deps
+ lib/
+ Testing/
+ CMakeFiles
+ build/
+ cmake-build-debug/
+ GtestTests.exe
