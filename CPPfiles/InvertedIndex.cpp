@@ -26,15 +26,16 @@ std::vector<Entry> InvertedIndex::GetWordCount(const std::string& word)
 
 void InvertedIndex::createDictionary ()
 {
-    std::vector<Entry> wordCount;
-    std::string line;
     std::mutex access;
 
     std::vector<std::thread> threads;
 
     for (int i = 0; i < docs.size(); ++i)
     {
-        std::thread myThread ( [&] {
+        std::thread myThread ( [this, &access, i] {
+
+            std::vector<Entry> wordCount;
+            std::string line;
 
             auto blok = refactorBloks(docs[i]);
 

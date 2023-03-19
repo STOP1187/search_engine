@@ -9,6 +9,17 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
     for (const auto & i : queries_input) {
 
         auto words = this->_index.refactorBloks(i);
+
+        sort(words.begin(), words.end() );
+        std::map<std::string, int, std::less<std::string>> dupsMap;
+        for (const auto &target: words){
+
+            int dups = std::count(words.begin(), words.end(), target);
+            dupsMap[target] = dups;
+        }
+
+        words.erase(unique(words.begin(), words.end() ),words.end() );
+
         std::vector<Entry> req;
 
         for (const auto & j : words)
@@ -24,14 +35,15 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 
         serchResult[i] = req;
 
-        auto result = std::max_element(serchResult[i].begin(), serchResult[i].end(),
-                                       [](Entry a, Entry b) {
-                                           return a.count < b.count;
-                                       });
-
-        if (countMax < result->count)
+        Entry max{};
+        for(int k = 1; k < serchResult[i].size(); k++)
         {
-            countMax = result->count;
+            max = serchResult[i][k].count < serchResult[i][k-1].count ? serchResult[i][k-1] : serchResult[i][k];
+        }
+
+        if (countMax < max.count)
+        {
+            countMax = max.count;
         }
     }
 
