@@ -14,7 +14,7 @@ FetchContent_Declare(
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 set(gtest_disable_pthreads on)
-set(MY_SRC_DIR ${CMAKE_SOURCE_DIR}/CPPfiles)
+set(MY_SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 
 FetchContent_MakeAvailable(googletest)
 
@@ -25,26 +25,26 @@ set(JSON_BuildTests OFF CACHE INTERNAL "")
 
 add_subdirectory(nlohmann_json)
 
-include_directories(headers)
-include_directories(CPPfiles)
+include_directories(include)
+include_directories(src)
 add_subdirectory(Tests)
 
 
 
 add_executable(search_engine
-        CPPfiles/main.cpp
-        headers/ConverterJSON.h
-        CPPfiles/ConverterJSON.cpp
-        headers/InvertedIndex.h
-        CPPfiles/InvertedIndex.cpp
-        headers/SearchServer.h
-        CPPfiles/SearchServer.cpp
-        headers/exeptionClass.h
-        CPPfiles/exeptionClass.cpp
-        headers/RequestNotFoundExeption.h
-        CPPfiles/RequestNotFoundExeption.cpp
-        headers/AnswersNotFoundExeption.h
-        CPPfiles/AnswersNotFoundExeption.cpp)
+        src/main.cpp
+        include/ConverterJSON.h
+        src/ConverterJSON.cpp
+        include/InvertedIndex.h
+        src/InvertedIndex.cpp
+        include/SearchServer.h
+        src/SearchServer.cpp
+        include/exeptionClass.h
+        src/exeptionClass.cpp
+        include/RequestNotFoundExeption.h
+        src/RequestNotFoundExeption.cpp
+        include/AnswersNotFoundExeption.h
+        src/AnswersNotFoundExeption.cpp)
 
 add_custom_command(TARGET search_engine PRE_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory

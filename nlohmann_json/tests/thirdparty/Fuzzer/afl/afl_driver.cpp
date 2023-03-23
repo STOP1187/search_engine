@@ -81,7 +81,7 @@ statistics from the file. If that fails then the process will quit.
     abort();                                                                   \
   }
 
-// libFuzzer interface is thin, so we don't include any libFuzzer headers.
+// libFuzzer interface is thin, so we don't include any libFuzzer include.
 extern "C" {
 int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size);
 __attribute__((weak)) int LLVMFuzzerInitialize(int *argc, char ***argv);

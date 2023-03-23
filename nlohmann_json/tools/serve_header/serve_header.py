@@ -353,7 +353,7 @@ if __name__ == '__main__':
                         help='the make command (default: make)')
     args = parser.parse_args()
 
-    # propagate the make command to use for amalgamating headers
+    # propagate the make command to use for amalgamating include
     WorkTree.make_command = args.make
 
     worktrees = None

@@ -5048,7 +5048,7 @@ struct from_json_fn
 namespace // NOLINT(cert-dcl59-cpp,fuchsia-header-anon-namespaces,google-build-namespaces)
 {
 #endif
-JSON_INLINE_VARIABLE constexpr const auto& from_json = // NOLINT(misc-definitions-in-headers)
+JSON_INLINE_VARIABLE constexpr const auto& from_json = // NOLINT(misc-definitions-in-include)
     detail::static_const<detail::from_json_fn>::value;
 #ifndef JSON_HAS_CPP_17
 }  // namespace
@@ -5747,7 +5747,7 @@ struct to_json_fn
 namespace // NOLINT(cert-dcl59-cpp,fuchsia-header-anon-namespaces,google-build-namespaces)
 {
 #endif
-JSON_INLINE_VARIABLE constexpr const auto& to_json = // NOLINT(misc-definitions-in-headers)
+JSON_INLINE_VARIABLE constexpr const auto& to_json = // NOLINT(misc-definitions-in-include)
     detail::static_const<detail::to_json_fn>::value;
 #ifndef JSON_HAS_CPP_17
 }  // namespace
@@ -24427,8 +24427,8 @@ inline void swap(nlohmann::NLOHMANN_BASIC_JSON_TPL& j1, nlohmann::NLOHMANN_BASIC
 }  // namespace std
 
 #if JSON_USE_GLOBAL_UDLS
-    using nlohmann::literals::json_literals::operator "" _json; // NOLINT(misc-unused-using-decls,google-global-names-in-headers)
-    using nlohmann::literals::json_literals::operator "" _json_pointer; //NOLINT(misc-unused-using-decls,google-global-names-in-headers)
+    using nlohmann::literals::json_literals::operator "" _json; // NOLINT(misc-unused-using-decls,google-global-names-in-include)
+    using nlohmann::literals::json_literals::operator "" _json_pointer; //NOLINT(misc-unused-using-decls,google-global-names-in-include)
 #endif
 
 // #include <nlohmann/detail/macro_unscope.hpp>

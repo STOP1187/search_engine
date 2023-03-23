@@ -488,7 +488,7 @@ struct from_json_fn
 namespace // NOLINT(cert-dcl59-cpp,fuchsia-header-anon-namespaces,google-build-namespaces)
 {
 #endif
-JSON_INLINE_VARIABLE constexpr const auto& from_json = // NOLINT(misc-definitions-in-headers)
+JSON_INLINE_VARIABLE constexpr const auto& from_json = // NOLINT(misc-definitions-in-include)
     detail::static_const<detail::from_json_fn>::value;
 #ifndef JSON_HAS_CPP_17
 }  // namespace

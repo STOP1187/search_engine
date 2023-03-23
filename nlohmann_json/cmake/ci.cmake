@@ -118,7 +118,7 @@ set(CLANG_CXXFLAGS
 # -Wno-long-long                  The library uses the long long type to interface with system functions.
 # -Wno-namespaces                 The library uses namespaces.
 # -Wno-padded                     We do not care about padding warnings.
-# -Wno-system-headers             We do not care about warnings in system headers.
+# -Wno-system-include             We do not care about warnings in system include.
 # -Wno-templates                  The library uses templates.
 
 set(GCC_CXXFLAGS
@@ -790,7 +790,7 @@ add_custom_target(ci_reproducible_tests
 )
 
 ###############################################################################
-# Check if every header in the include folder includes sufficient headers to
+# Check if every header in the include folder includes sufficient include to
 # be compiled individually.
 ###############################################################################
 

@@ -18,7 +18,7 @@ SRCS=$(shell find include -type f | sort)
 # the list of sources in the tests folder
 TESTS_SRCS=$(shell find tests -type f \( -name '*.hpp' -o -name '*.cpp' -o -name '*.cu' \) -not -path 'tests/thirdparty/*' -not -path 'tests/abi/include/nlohmann/*' | sort)
 
-# the single headers (amalgamated from the source files)
+# the single include (amalgamated from the source files)
 AMALGAMATED_FILE=single_include/nlohmann/json.hpp
 AMALGAMATED_FWD_FILE=single_include/nlohmann/json_fwd.hpp
 
