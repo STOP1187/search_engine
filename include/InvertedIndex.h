@@ -26,6 +26,7 @@ public:
     std::vector<std::string> refactorBloks (std::string InDocs);
     std::vector<Entry> GetWordCount(const std::string& word);
     void UpdateDocumentBaseFromFile(const std::vector<std::string>& fileNames);
+    int docsCount();
 
 private:
     std::vector<std::string> docs;

@@ -53,26 +53,26 @@ void InvertedIndex::createDictionary ()
                     }
                 }
 
+                access.lock();
+
                 if (freq_dictionary.contains(line)) {
                     auto iter = std::find_if(freq_dictionary[line].begin(), freq_dictionary[line].end(), [&cm = entry]
                             (const Entry &m) -> bool { return cm.doc_id == m.doc_id; });
 
-                    if (iter != std::end(freq_dictionary[line])) {
+                    if (iter != std::end(freq_dictionary[line]))
+                    {
                         iter->count = entry.count;
 
-                    } else {
-                        access.lock();
+                    } else
+                    {
                         freq_dictionary[line].push_back(entry);
-                        access.unlock();
                     }
 
-
-                } else {
-                    access.lock();
+                } else
+                {
                     freq_dictionary[line].push_back(entry);
-                    access.unlock();
                 }
-
+                access.unlock();
             }
 
             wordCount.clear();
@@ -141,4 +141,9 @@ void InvertedIndex::UpdateDocumentBaseFromFile(const std::vector<std::string>& f
         text = ' ';
         file.close();
     }
+}
+
+int InvertedIndex::docsCount()
+{
+    return docs.size();
 }

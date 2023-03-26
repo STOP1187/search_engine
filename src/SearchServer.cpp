@@ -2,52 +2,58 @@
 
 std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<std::string> &queries_input)
 {
+
     std::vector<std::vector<RelativeIndex>> baseAnswers;
-    float relAbs = 0;
+    float relAbsMax = 0;
     std::map<std::string, std::vector<Entry>> serchResult;
-    std::map<int, std::string, std::less<int>> dupsMap;
 
     for (const auto & i : queries_input) {
 
         auto words = this->_index.refactorBloks(i);
 
-        sort(words.begin(), words.end() );
+        sort(words.begin(), words.end());
 
-        words.erase(unique(words.begin(), words.end() ),words.end() );
+        words.erase(unique(words.begin(), words.end()),words.end());
+        std::map<std::string, int, std::less<std::string>> dupsMap;
 
         for (const auto &target: words)
         {
             int dups = std::count(words.begin(), words.end(), target);
-            dupsMap[dups] = target;
+            dupsMap[target] = dups;
         }
 
         std::vector<Entry> req;
 
         for (const auto & j : dupsMap)
         {
-            auto reqResult = _index.GetWordCount(j.second);
+            auto reqResult = _index.GetWordCount(j.first);
 
             if (reqResult.empty())
             {
                 continue;
             }
 
-            auto maxResponse = reqResult.size() < _maxResponse ? reqResult.end() : reqResult.begin() + _maxResponse;
-
-            req.insert(req.end(), reqResult.begin(), maxResponse);
+            req.insert(req.end(), reqResult.begin(), reqResult.end());
         }
 
         serchResult[i] = req;
 
-        float max = 0;
-        for(int k = 1; k < serchResult[i].size(); k++)
+        for(int k = 0; k < _index.docsCount(); k++)
         {
-            max += serchResult[i][k].count;
-        }
+            float max = 0;
 
-        if (relAbs < max)
-        {
-            relAbs = max;
+            for (const auto & r : serchResult[i])
+            {
+                if (r.doc_id == k)
+                {
+                    max += r.count;
+                }
+
+                if (relAbsMax < max)
+                {
+                    relAbsMax = max;
+                }
+            }
         }
     }
 
@@ -58,22 +64,43 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 
         for (int j = 0; j < serchResult[i].size(); ++j)
         {
-            auto lambda = [&j](float a, std::pair<std::string , std::vector<Entry>> b)
-            {if (!b.first.empty() && !b.second.empty())
-            {
-                return a + b.second[j].count;
-            }
-                return a;
-            };
+            auto relAbsForOneDocs = 0;
 
-            auto sumCount = std::accumulate(serchResult.begin(), serchResult.end(), 0.0f, lambda);
+            float maxOneDocs = 0;
+
+            for (const auto & r : serchResult[i])
+            {
+                if (r.doc_id == serchResult[i][j].doc_id)
+                {
+                    maxOneDocs += r.count;
+
+                    if (relAbsForOneDocs < maxOneDocs)
+                    {
+                        relAbsForOneDocs = maxOneDocs;
+                    }
+                }
+            }
 
             relative.doc_id = serchResult[i][j].doc_id;
-            relative.rank = sumCount / relAbs;
+            relative.rank = relAbsForOneDocs / relAbsMax;
             request.push_back(relative);
         }
-        baseAnswers.push_back(request);
+
+        auto cmp = [](RelativeIndex const & a, RelativeIndex const & b)
+        {
+            return a.rank > b.rank;
+        };
+        std::sort(request.begin(), request.end(), cmp);
+
+        auto maxResponse = request.size() < _maxResponse ? request.end() : request.begin() + _maxResponse;
+
+        std::vector<RelativeIndex> finalRequest;
+
+        finalRequest.insert(finalRequest.begin(), request.begin(), maxResponse);
+
+        baseAnswers.push_back(finalRequest);
     }
+
     return baseAnswers;
 }
 
