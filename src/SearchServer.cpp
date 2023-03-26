@@ -3,47 +3,51 @@
 std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<std::string> &queries_input)
 {
     std::vector<std::vector<RelativeIndex>> baseAnswers;
-    float countMax = 0;
+    float relAbs = 0;
     std::map<std::string, std::vector<Entry>> serchResult;
+    std::map<int, std::string, std::less<int>> dupsMap;
 
     for (const auto & i : queries_input) {
 
         auto words = this->_index.refactorBloks(i);
 
         sort(words.begin(), words.end() );
-        std::map<std::string, int, std::less<std::string>> dupsMap;
-        for (const auto &target: words){
-
-            int dups = std::count(words.begin(), words.end(), target);
-            dupsMap[target] = dups;
-        }
 
         words.erase(unique(words.begin(), words.end() ),words.end() );
 
+        for (const auto &target: words)
+        {
+            int dups = std::count(words.begin(), words.end(), target);
+            dupsMap[dups] = target;
+        }
+
         std::vector<Entry> req;
 
-        for (const auto & j : words)
+        for (const auto & j : dupsMap)
         {
-            auto reqResult = _index.GetWordCount(j);
+            auto reqResult = _index.GetWordCount(j.second);
 
             if (reqResult.empty())
             {
                 continue;
             }
-            req.insert(req.end(), reqResult.begin(), reqResult.end());
+
+            auto maxResponse = reqResult.size() < _maxResponse ? reqResult.end() : reqResult.begin() + _maxResponse;
+
+            req.insert(req.end(), reqResult.begin(), maxResponse);
         }
 
         serchResult[i] = req;
 
-        Entry max{};
+        float max = 0;
         for(int k = 1; k < serchResult[i].size(); k++)
         {
-            max = serchResult[i][k].count < serchResult[i][k-1].count ? serchResult[i][k-1] : serchResult[i][k];
+            max += serchResult[i][k].count;
         }
 
-        if (countMax < max.count)
+        if (relAbs < max)
         {
-            countMax = max.count;
+            relAbs = max;
         }
     }
 
@@ -65,7 +69,7 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
             auto sumCount = std::accumulate(serchResult.begin(), serchResult.end(), 0.0f, lambda);
 
             relative.doc_id = serchResult[i][j].doc_id;
-            relative.rank = sumCount / countMax;
+            relative.rank = sumCount / relAbs;
             request.push_back(relative);
         }
         baseAnswers.push_back(request);

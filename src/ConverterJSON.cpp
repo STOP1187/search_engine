@@ -14,6 +14,7 @@ std::vector<std::string> ConverterJSON::GetTextDocuments()
     nlohmann::json inList;
     fileConfig >> inList;
     massive = inList["files"];
+    maxResponse = inList["config"]["max_responses"];
 
     fileConfig.close();
 

@@ -31,5 +31,5 @@ public:
     std::vector<std::string> GetTextDocuments();
     std::vector<std::string> GetRequests();
     void putAnswers(std::vector<std::vector<RelativeIndex>> answers);
-
+    int maxResponse;
 };

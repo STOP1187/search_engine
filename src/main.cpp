@@ -14,7 +14,7 @@ int main() {
         invertedIndex->UpdateDocumentBaseFromFile(getText);
         invertedIndex->createDictionary();
 
-        auto* server = new SearchServer(*invertedIndex);
+        auto* server = new SearchServer(*invertedIndex, converterJSON->maxResponse);
         auto getRequest = converterJSON->GetRequests();
         auto serchBase = server->search(getRequest);
 

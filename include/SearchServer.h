@@ -9,9 +9,11 @@
 class SearchServer {
 
 public:
-    SearchServer(InvertedIndex& idx) : _index(idx){ };
+    SearchServer(InvertedIndex& idx) : _index(idx), _maxResponse(3){ };
+    SearchServer(InvertedIndex& idx, int maxResponse) : _index(idx), _maxResponse(maxResponse){ };
     std::vector<std::vector<RelativeIndex>> search(const std::vector<std::string> &queries_input);
 
 private:
     InvertedIndex _index;
+    int _maxResponse;
 };
