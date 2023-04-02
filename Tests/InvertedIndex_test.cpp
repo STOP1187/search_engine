@@ -38,7 +38,7 @@ TEST(TestCaseInvertedIndex, TestBasic2) {
             "milk milk milk milk milk water water water water water",
             "americano cappuccino"
     };
-    const vector<string> requests = {"milk", "water", "cappuchino"};
+    const vector<string> requests = {"milk", "water", "cappuccino"};
     const vector<vector<Entry>> expected = {
             {
                     {0, 4}, {1, 1}, {2, 5}
