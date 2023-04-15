@@ -9,7 +9,6 @@
 #include <exception>
 #include "exeptionClass.h"
 #include "nlohmann/json.hpp"
-#include "gtest/gtest.h"
 #include "RequestNotFoundExeption.h"
 #include "exeptionClass.h"
 #include "AnswersNotFoundExeption.h"
