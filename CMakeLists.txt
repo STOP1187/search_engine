@@ -51,5 +51,4 @@ add_custom_command(TARGET search_engine PRE_BUILD
         ${CMAKE_SOURCE_DIR}/config/ $<TARGET_FILE_DIR:search_engine>)
 
 target_link_libraries(search_engine PRIVATE nlohmann_json::nlohmann_json)
-target_link_libraries(search_engine PRIVATE gtest_main)
-gtest_discover_tests(search_engine)
+

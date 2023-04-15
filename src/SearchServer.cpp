@@ -35,16 +35,30 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
         }
 
         auto currentValue = std::find_if(serchResult.begin(), serchResult.end(),
-                                         [=](std::pair<std::string, std::vector<Entry>> values)
-                                         {return values.first == i;});
+                                         [=](std::pair<std::string, std::vector<Entry>> value)
+                                         {return value.first == i;});
 
         if (currentValue != serchResult.end())
         {
             currentValue->second.insert(currentValue->second.end(), req.begin(), req.end());
+        } else
+        {
+            if (!req.empty())
+            {
+                serchResult.push_back(std::make_pair(i, req));
+            }
+            else
+            {
+                serchResult.push_back(std::make_pair(i, std::vector<Entry> ()));
+            }
         }
 
         for (int k = 0; k < _index.docsCount(); k++) {
             float max = 0;
+
+            currentValue = std::find_if(serchResult.begin(), serchResult.end(),
+                                             [=](std::pair<std::string, std::vector<Entry>> value)
+                                             {return value.first == i;});
 
             for (const auto &r: currentValue->second) {
                 if (r.doc_id == k) {
