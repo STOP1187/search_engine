@@ -5,7 +5,8 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
 
     std::vector<std::vector<RelativeIndex>> baseAnswers;
     float relAbsMax = 0;
-    std::map<std::string, std::vector<Entry>> serchResult;
+
+    std::vector<std::pair<std::string, std::vector<Entry>>> serchResult;
 
     for (const auto &i: queries_input) {
 
@@ -33,12 +34,19 @@ std::vector<std::vector<RelativeIndex>> SearchServer::search(const std::vector<s
             req.insert(req.end(), reqResult.begin(), reqResult.end());
         }
 
-        serchResult[i] = req;
+        auto currentValue = std::find_if(serchResult.begin(), serchResult.end(),
+                                         [=](std::pair<std::string, std::vector<Entry>> values)
+                                         {return values.first == i;});
+
+        if (currentValue != serchResult.end())
+        {
+            currentValue->second.insert(currentValue->second.end(), req.begin(), req.end());
+        }
 
         for (int k = 0; k < _index.docsCount(); k++) {
             float max = 0;
 
-            for (const auto &r: serchResult[i]) {
+            for (const auto &r: currentValue->second) {
                 if (r.doc_id == k) {
                     max += r.count;
                 }

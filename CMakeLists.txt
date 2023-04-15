@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.21)
 
 project(search_engine)
 
@@ -52,7 +52,4 @@ add_custom_command(TARGET search_engine PRE_BUILD
 
 target_link_libraries(search_engine PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries(search_engine PRIVATE gtest_main)
-
-
-
 gtest_discover_tests(search_engine)

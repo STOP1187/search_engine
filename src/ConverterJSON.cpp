@@ -39,73 +39,74 @@ std::vector<std::string> ConverterJSON::GetRequests()
     return requests;
 }
 
+nlohmann::json answer_to_json(const RelativeIndex& answer) {
+    return nlohmann::json{
+            {"docid", answer.doc_id}, {"rank" , answer.rank}};
+}
 
-void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers)
-{
+void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers) {
     std::ofstream fileAnswer("answers.json");
     nlohmann::json dict;
 
-    if (!fileAnswer)
-    {
+    if (!fileAnswer) {
         throw AnswersNotFoundExeption();
     }
 
     bool result;
 
-    for (int i = 0; i < answers.size(); ++i)
-    {
-       auto request = answers[i];
-       auto requestName = GetRequests()[i];
+    for (int i = 0; i < answers.size(); ++i) {
+        auto request = answers[i];
+        auto requestName = GetRequests()[i];
+
+        std::string name("request");
+        name.push_back(i);
 
         if (answers[i].empty()) {
             result = false;
-            dict = {
-                    "answer", {
-                            {"request", requestName},
-                            {"result", result},
+            nlohmann::json a{
+                    {name,
+                     {"request", requestName},
+                     {"result", result},
                     }
             };
-
-            fileAnswer << dict << "," << std::endl;
+            dict[name]+= a;
             continue;
         }
 
-       for (int j = 0; j < request.size(); ++j)
-       {
+        for (int j = 0; j < request.size(); ++j) {
 
-           if (answers[i].empty())
-           {
-               result = false;
-               dict = {
-                       "answer", {
-                               {"request", requestName},
-                               {"result", result},
-                       }
-               };
-
-           }
-           else
-           {
-               result = true;
-               dict = {
-                       "answer", {
-                               {"request", requestName},
-                               {"result", result},
-                               {"relevance", {
-                                       {"docid", answers[i][j].doc_id},
-                                       {"rank", answers[i][j].rank}
-                               }}
-                       }
-               };
+            if (answers[i].empty()) {
+                result = false;
+                nlohmann::json a{
+                        {name,     requestName},
+                        {"result", result},
+                };
+                if (dict.contains(name))
+                {
+                    dict[name] += a;
+                }
 
 
-           }
-           fileAnswer << dict << "," << std::endl;
-       }
+            } else {
+                result = answers[i][j].rank > 0;
+                if (result) {
+                    nlohmann::json a{
+                            {"request",   requestName},
+                            {"result",    result},
+                            {"relevance", {
+                                                  {"docid", answers[i][j].doc_id},
+                                                  {"rank", answers[i][j].rank}
+                                          }}
+                    };
+                    dict[name] += a;
+                }
+
+            }
+        }
 
     }
 
+    nlohmann::json r{"answers", dict};
+    fileAnswer << r.dump(4) << std::endl;
     fileAnswer.close();
 }
-
-
