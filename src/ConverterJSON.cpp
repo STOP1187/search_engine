@@ -39,11 +39,6 @@ std::vector<std::string> ConverterJSON::GetRequests()
     return requests;
 }
 
-nlohmann::json answer_to_json(const RelativeIndex& answer) {
-    return nlohmann::json{
-            {"docid", answer.doc_id}, {"rank" , answer.rank}};
-}
-
 void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers) {
     std::ofstream fileAnswer("answers.json");
     nlohmann::json dict;
